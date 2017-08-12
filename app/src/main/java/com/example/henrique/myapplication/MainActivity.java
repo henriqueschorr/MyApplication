@@ -1,5 +1,7 @@
 package com.example.henrique.myapplication;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btLogin = (Button) findViewById(R.id.btLogin);
-
     }
 
     public void onClick(View v){
@@ -27,10 +27,19 @@ public class MainActivity extends AppCompatActivity {
         String login = tLogin.getText().toString();
         String senha = tSenha.getText().toString();
         if(login.equals("henrique") && senha.equals("123")){
-            Toast.makeText(this, "Bem vindo", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Bem vindo", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getContext(), BemVindoActivity.class);
+            Bundle params = new Bundle();
+            params.putString("nome", "Henrique Schorr");
+            intent.putExtras(params);
+            startActivity(intent);
         } else {
             Toast.makeText(this, "Errrou", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private Context getContext(){
+        return this;
     }
 
 
